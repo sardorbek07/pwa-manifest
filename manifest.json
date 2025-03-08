@@ -1,7 +1,7 @@
 {
-  "name": "Mening Saytim",
-  "short_name": "Saytim",
-  "start_url": "/",
+  "name": "Sardor Sobirov",
+  "short_name": "Sardor Developer",
+  "start_url": "/?v=2",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
