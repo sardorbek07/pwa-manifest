@@ -8,5 +8,48 @@
 </head>
 <body>
     <h1>Hello, GitHub Pages!</h1>
+
+    <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/pwa-manifest/service-worker.js')
+    .then((reg) => console.log('Service Worker muvaffaqiyatli ro‘yxatdan o‘tkazildi!', reg))
+    .catch((err) => console.log('Service Worker ro‘yxatdan o‘tkazishda xatolik yuz berdi!', err));
+}
+
+let deferredPrompt;
+const installButton = document.createElement('button');
+installButton.textContent = "Ilovani o'rnating";
+installButton.style.position = "fixed";
+installButton.style.bottom = "20px";
+installButton.style.right = "20px";
+installButton.style.padding = "10px";
+installButton.style.background = "#007BFF";
+installButton.style.color = "#fff";
+installButton.style.border = "none";
+installButton.style.borderRadius = "5px";
+installButton.style.cursor = "pointer";
+installButton.style.display = "none";
+document.body.appendChild(installButton);
+
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+  deferredPrompt = event;
+  installButton.style.display = "block";
+  
+  installButton.addEventListener('click', () => {
+    installButton.style.display = "none";
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log("Foydalanuvchi PWA ilovasini o‘rnatdi");
+      } else {
+        console.log("Foydalanuvchi PWA ilovasini rad etdi");
+      }
+      deferredPrompt = null;
+    });
+  });
+});
+</script>
+
 </body>
 </html>
